@@ -3,14 +3,14 @@ import { useEffect, useState } from 'react';
 
 import Daily from '@daily-co/daily-js';
 
-import firebase from 'firebase/app';
-import 'firebase/auth';
-import 'firebase/firestore';
+// import firebase from 'firebase/app';
+// import 'firebase/auth';
+// import 'firebase/firestore';
 
 
 
 
-function userDashboard() {
+function UserDashboard() {
 
 
 useEffect(() => {
@@ -24,36 +24,7 @@ useEffect(() => {
     };
 }, []);
 
-const [user, setUser] = useState(null);
-const [callHistory, setCallHistory] = useState([]);
 
-
-
-useEffect(() => {
-    
-    // Listen for changes in authentication state
-    firebase.auth().onAuthStateChanged((user) => {
-        if (user) {
-            setUser(user);
-            // Get call history from Firestore
-            firebase
-                .firestore()
-                .collection('calls')
-                .where('userId', '==', user.uid)
-                .onSnapshot((snapshot) => {
-                    setCallHistory(snapshot.docs.map((doc) => doc.data()));
-                });
-        } else {
-            setUser(null);
-            setCallHistory([]);
-        }
-    });
-
-    // Clean up when the component unmounts
-    return () => {
-        firebase.auth().signOut();
-    };
-}, []);
 
 
 const [currentRoom, setCurrentRoom] = useState(null);
@@ -100,4 +71,4 @@ return (
 
 }
 
-export default userDashboard;
+export default UserDashboard;

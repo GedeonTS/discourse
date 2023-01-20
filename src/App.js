@@ -1,12 +1,12 @@
 import './App.css';
-import userDashboard from './userDashboard';
+import UserDashboard from './UserDashboard.js';
 
 
 function App() {
   return (
     <div className="App">
      hi there!
-        <userDashboard/>
+        <UserDashboard/>
     </div>
   );
 }

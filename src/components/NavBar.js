@@ -1,11 +1,12 @@
 const NavBar =()=>{
     return (
-        <>
+        <header>
+             <p>Logo here</p>
             <nav>
-                <p>Logo here</p>
-                <p>links to internal pages here</p>
+               
+                <p>Links to internal pages here</p>
             </nav>
-        </>
+        </header>
     );
 }
 

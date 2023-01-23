@@ -35,8 +35,8 @@ const SignUp =()=>{
     }
     
     return (
-        <div className="authContainer">
-            <h1>Create an Account: sign up page</h1>
+        <div className="log-container">
+            <h1 className="log-header">Create an Account: sign up page</h1>
             {error && <p>{error}</p>}
             <form onSubmit={signUp}>
                 <p>
@@ -69,7 +69,7 @@ const SignUp =()=>{
             </form>
 
             <div>
-                <h3>
+                <h3 className="log-header2">
                     Already have an account?
                     <Link to="/login">Log in</Link>
                 </h3>

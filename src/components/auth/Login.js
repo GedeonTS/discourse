@@ -27,8 +27,8 @@ const Login = () => {
     };
 
     return (
-        <div className="authContainer">
-            <h1>Log into your account</h1>
+        <div className="log-container">
+            <h1 className="log-header">Log into your account</h1>
             {error && <p>{error}</p>}
             <form onSubmit={login}>
                 <p>
@@ -55,7 +55,7 @@ const Login = () => {
             </form>
 
             <div>
-                <h3>
+                <h3 className="log-header2">
                     Need to make an account?
                     <Link to="/signup">sign Up</Link>
                 </h3>

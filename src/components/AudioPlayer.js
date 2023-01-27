@@ -9,7 +9,7 @@ const AudioPlayer = ({user}) => {
     },[user.videoTrack])
   return (
     <div>
-      AAAASADFSFDGFHGJHJ
+      <h1>{user.uid}</h1>
         <div 
         ref={ref}
         style={{width:"200px", height:"200px"}}>

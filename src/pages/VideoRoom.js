@@ -1,18 +1,26 @@
 import { Link } from "react-router-dom";
-import AgoraRTC, {createClient} from "agora-rtc-sdk-ng";
+import AgoraRTC, { createClient } from "agora-rtc-sdk-ng";
+// import AgoraRtcEngine from "agora-rtc-sdk-ng";
 import { useEffect, useState } from "react";
 import "./rooms.css";
-//  
+
 import AudioPlayer from "../components/AudioPlayer";
+
+
 const APP_ID = "822488d93b924e8dbcf45dd5b3950d9f";
-const TOKEN ="007eJxTYJjGVnTOQ+S+7WHff/q+S261OT/547wqjv/558hcRmEHTjkFBgsjIxMLixRL4yRLI5NUi5Sk5DQT05QU0yRjS1ODFMu0opXnkhsCGRlUDmQyMjJAIIjPxpCYUpSZmsPAAABEgh9N";
-const CHANNEL = "adriel"
+const TOKEN ="007eJxTYLj0e8syt/fxwq86Z7X9stE0OOiuKLbh5q+GDmFnUz6jhAQFBgsjIxMLixRL4yRLI5NUi5Sk5DQT05QU0yRjS1ODFMs084CLyQ2BjAztK7KYGBkgEMRnYShJLS5hYAAAT3UfIQ==";
+const CHANNEL = "test";
+// const TOKEN = "generateTokenAudience(CHANNEL)";
+
+// firebase token generator
+
 
 AgoraRTC.setLogLevel(4);
 
+
 let agoraCommandQueue = Promise.resolve();
 
-const createAgoraClient = ({ onVideoTrack, onUserDisconnected }) => {
+const createAgoraClient = ({ onVideoTrack, onUserDisconnected ,APP_ID, CHANNEL, TOKEN}) => {
     const client = createClient({
         mode: "rtc",
         codec: "vp8",
@@ -34,9 +42,9 @@ const createAgoraClient = ({ onVideoTrack, onUserDisconnected }) => {
     const connect = async () => {
         await waitForConnectionState("DISCONNECTED");
 
+    
         const uid = await client.join(APP_ID, CHANNEL, TOKEN, null);
 
-        console.log(uid)
 
         client.on("user-published", (user, mediaType) => {
             client.subscribe(user, mediaType).then(() => {
@@ -62,6 +70,7 @@ const createAgoraClient = ({ onVideoTrack, onUserDisconnected }) => {
             uid,
         };
     };
+    
 
     const disconnect = async () => {
         await waitForConnectionState("CONNECTED");
@@ -82,7 +91,7 @@ const createAgoraClient = ({ onVideoTrack, onUserDisconnected }) => {
 
    
 
-const VideoRoom =()=>{
+const VideoRoom =({CHANNEL,TOKEN})=>{
     const [users, setUsers]=useState([])
     const [uid, setUid]=useState(null)
 
@@ -99,7 +108,8 @@ const VideoRoom =()=>{
 
         const { connect, disconnect } = createAgoraClient({
             onVideoTrack,
-            onUserDisconnected,
+            onUserDisconnected,APP_ID, CHANNEL,TOKEN
+
         });
 
         const setup = async () => {
@@ -134,45 +144,13 @@ const VideoRoom =()=>{
         <>
             <h1 className="room-heading">This is the video room</h1>
             <div className="room-container">
-                <ul className="video-list">
-                    <li className="video-item">
-                        <p>Video Contaier 1</p>
-                        <p>username1</p>
-                    </li>
-                    <li className="video-item">
-                        <p>Video container 2</p>
-                        <p>username2</p>
-                    </li>
-                    <li className="video-item">
-                        <p>Video container 3</p>
-                        <p>username3</p>
-                    </li>
-                </ul>
-
-                <ul className="chat-log">
-                    <h3>Chat log</h3>
-                    <li className="chat-item">
-                        <p>username1</p>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi, excepturi.</p>
-                        <p>date stamp1</p>
-                    </li>
-                    <li className="chat-item">
-                        <p>username2</p>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam, quae?</p>
-                        <p>date stamp2</p>
-                    </li>
-                    <li className="chat-item">
-                        <p>username3</p>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae, alias.</p>
-                        <p>datestamp3</p>
-                    </li>
-                </ul>
+               
 
 
                 {users.map((user)=>{ 
                     return(
 
-                        <div>
+                        <div>I AM  IN!
                             {uid}
                             <AudioPlayer key={user.uid} user={user}/>
                         </div>

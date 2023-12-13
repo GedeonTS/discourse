@@ -12,7 +12,7 @@ const TOKEN ="007eJxTYLj0e8syt/fxwq86Z7X9stE0OOiuKLbh5q+GDmFnUz6jhAQFBgsjIxMLixR
 const CHANNEL = "test";
 // const TOKEN = "generateTokenAudience(CHANNEL)";
 
-// firebase token generator
+// firebase token generator test
 
 
 AgoraRTC.setLogLevel(4);
